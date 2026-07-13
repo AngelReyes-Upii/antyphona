@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Sitio oficial de Antyphona. Escucha nuestros lanzamientos en tu plataforma favorita."
+    >
+
+    <title>ANTYPHONA</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- Script -->
+    <script src="./js/main.js" defer></script>
+</head>
+
+<body>
+
+    <main class="site-main">
+
+        <!-- Último Lanzamiento -->
+        <section
+            id="ultimo-lanzamiento"
+            class="music-page"
+            data-component="./components/ultimo-lanzamiento.html"
+            aria-label="Último lanzamiento de Antyphona"
+        >
+            <p class="component-status">
+                Cargando...
+            </p>
+        </section>
+
+        <!-- Discografía -->
+        <section
+            id="lanzamientos"
+            class="releases-page"
+            data-component="./components/lanzamientos.html"
+            aria-label="Lanzamientos de Antyphona"
+        >
+            <p class="component-status">
+                Cargando lanzamientos...
+            </p>
+        </section>
+
+        <!-- Detalle del lanzamiento seleccionado -->
+        <section
+            id="detalle-lanzamiento"
+            class="release-detail-page"
+            aria-label="Información del lanzamiento seleccionado"
+            aria-live="polite"
+            hidden
+        ></section>
+
+        <!-- Videos -->
+        <section
+            id="videos"
+            class="videos-page"
+            data-component="./components/videos.html"
+            aria-label="Videos de Antyphona"
+        >
+            <p class="component-status">
+                Cargando videos...
+            </p>
+        </section>
+
+        <!-- Detalle del video seleccionado -->
+        <section
+            id="detalle-video"
+            class="video-detail-page"
+            aria-label="Información del video seleccionado"
+            aria-live="polite"
+            hidden
+        ></section>
+
+    </main>
+
+    <noscript>
+        <p class="javascript-warning">
+            Este sitio necesita JavaScript para mostrar su contenido.
+        </p>
+    </noscript>
+
+</body>
+</html>

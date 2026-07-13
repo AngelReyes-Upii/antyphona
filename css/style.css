@@ -1,0 +1,2546 @@
+/* ========================================
+   CONFIGURACIÓN GENERAL
+======================================== */
+
+:root {
+    --background-start: #17131f;
+    --background-end: #08070b;
+
+    --card-background: #ffffff;
+    --primary-text: #171717;
+    --secondary-text: #777777;
+
+    --border-color: #e8e8e8;
+    --button-background: #f7f7f7;
+    --button-hover: #171717;
+
+    --card-width: 390px;
+    --border-radius: 18px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(174, 88, 163, 0.35),
+            transparent 38%
+        ),
+        linear-gradient(
+            150deg,
+            var(--background-start),
+            var(--background-end)
+        );
+
+    color: var(--primary-text);
+}
+
+
+/* ========================================
+   CONTENEDOR PRINCIPAL
+======================================== */
+
+.music-page {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 32px 16px;
+}
+
+
+/* ========================================
+   TARJETA MUSICAL
+======================================== */
+
+.music-card {
+    width: 100%;
+    max-width: var(--card-width);
+
+    overflow: hidden;
+
+    background-color: var(--card-background);
+
+    border-radius: var(--border-radius);
+
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.45),
+        0 4px 14px rgba(0, 0, 0, 0.20);
+
+    animation: card-entrance 700ms ease-out;
+}
+
+
+/* ========================================
+   PORTADA
+======================================== */
+
+.cover-container {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
+    overflow: hidden;
+
+    background-color: #222222;
+}
+
+.cover-image {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform 600ms ease,
+        filter 600ms ease;
+}
+
+.music-card:hover .cover-image {
+    transform: scale(1.01);
+    filter: brightness(1.04);
+}
+
+
+/* ========================================
+   INFORMACIÓN DEL LANZAMIENTO
+======================================== */
+
+.release-information {
+    padding: 24px 24px 20px;
+
+    text-align: center;
+
+    border-bottom: 1px solid var(--border-color);
+}
+
+.release-label {
+    margin-bottom: 8px;
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    letter-spacing: 0.16rem;
+    text-transform: uppercase;
+
+    color: #a25491;
+}
+
+.release-title {
+    margin-bottom: 6px;
+
+    font-size: clamp(1.15rem, 4vw, 1.5rem);
+    line-height: 1.25;
+
+    letter-spacing: -0.02rem;
+}
+
+.artist-name {
+    margin-bottom: 10px;
+
+    font-size: 0.92rem;
+    font-weight: 600;
+
+    color: #444444;
+}
+
+.release-description {
+    font-size: 0.85rem;
+    line-height: 1.5;
+
+    color: var(--secondary-text);
+}
+
+
+/* ========================================
+   LISTA DE PLATAFORMAS
+======================================== */
+
+.streaming-section {
+    padding: 6px 18px 14px;
+}
+
+.platform-link {
+    min-height: 68px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 16px;
+
+    padding: 12px 6px;
+
+    text-decoration: none;
+
+    color: var(--primary-text);
+
+    border-bottom: 1px solid var(--border-color);
+
+    transition:
+        transform 180ms ease,
+        opacity 180ms ease;
+}
+
+.platform-link:last-child {
+    border-bottom: none;
+}
+
+.platform-link:hover {
+    transform: translateX(3px);
+}
+
+.platform-link:focus-visible {
+    outline: 3px solid rgba(162, 84, 145, 0.35);
+    outline-offset: 3px;
+
+    border-radius: 8px;
+}
+
+.platform-information {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+}
+
+.platform-logo {
+    width: 27px;
+    height: 27px;
+
+    object-fit: contain;
+}
+
+.platform-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+
+/* ========================================
+   BOTONES
+======================================== */
+
+.platform-button {
+    flex-shrink: 0;
+
+    min-width: 100px;
+
+    padding: 9px 13px;
+
+    text-align: center;
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    color: #555555;
+    background-color: var(--button-background);
+
+    border: 1px solid #dddddd;
+    border-radius: 7px;
+
+    transition:
+        color 180ms ease,
+        background-color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+}
+
+.platform-link:hover .platform-button {
+    color: #ffffff;
+    background-color: var(--button-hover);
+    border-color: var(--button-hover);
+
+    transform: translateY(-1px);
+}
+
+
+/* ========================================
+   PIE DE LA TARJETA
+======================================== */
+
+.card-footer {
+    padding: 14px 20px 18px;
+
+    text-align: center;
+
+    font-size: 0.68rem;
+
+    color: #999999;
+}
+
+
+/* ========================================
+   ANIMACIONES
+======================================== */
+
+@keyframes card-entrance {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ========================================
+   ADAPTACIÓN PARA CELULARES
+======================================== */
+
+@media (max-width: 480px) {
+
+    .music-page {
+        align-items: flex-start;
+
+        padding: 14px 10px;
+    }
+
+    .music-card {
+        max-width: 100%;
+
+        border-radius: 14px;
+    }
+
+    .release-information {
+        padding: 21px 18px 18px;
+    }
+
+    .streaming-section {
+        padding-inline: 14px;
+    }
+
+    .platform-link {
+        min-height: 65px;
+
+        gap: 10px;
+    }
+
+    .platform-button {
+        min-width: 92px;
+
+        padding-inline: 10px;
+    }
+}
+
+
+/* ========================================
+   ACCESIBILIDAD
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ========================================
+   CARGA DE COMPONENTES
+======================================== */
+
+.component-status {
+    width: 100%;
+
+    text-align: center;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    color: #ffffff;
+}
+
+.component-error {
+    width: min(100%, 390px);
+
+    padding: 28px 22px;
+
+    text-align: center;
+
+    color: #ffffff;
+    background-color: rgba(25, 20, 31, 0.92);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+}
+
+.component-error h2 {
+    margin-bottom: 10px;
+
+    font-size: 1.15rem;
+}
+
+.component-error p {
+    font-size: 0.86rem;
+    line-height: 1.5;
+
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.javascript-warning {
+    padding: 20px;
+
+    text-align: center;
+
+    color: #ffffff;
+    background-color: #7c1d1d;
+}
+
+/* ========================================
+   DESCARGA DE LA CANCIÓN
+======================================== */
+
+.download-section {
+    padding: 24px 20px 26px;
+
+    text-align: center;
+
+    background-color: #f8f8f8;
+
+    border-top: 1px solid var(--border-color);
+}
+
+.download-label {
+    margin-bottom: 7px;
+
+    font-size: 0.68rem;
+    font-weight: 700;
+
+    letter-spacing: 0.14rem;
+    text-transform: uppercase;
+
+    color: #a25491;
+}
+
+.download-title {
+    margin-bottom: 7px;
+
+    font-size: 1.15rem;
+    line-height: 1.25;
+
+    color: var(--primary-text);
+}
+
+.download-description {
+    margin-bottom: 16px;
+
+    font-size: 0.82rem;
+    line-height: 1.5;
+
+    color: var(--secondary-text);
+}
+
+
+/* Contenedor desplegable */
+
+.download-selector {
+    width: 100%;
+}
+
+.download-selector summary {
+    list-style: none;
+}
+
+.download-selector summary::-webkit-details-marker {
+    display: none;
+}
+
+
+/* Botón principal */
+
+.download-main-button {
+    width: 100%;
+    min-height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 12px 18px;
+
+    font-size: 0.82rem;
+    font-weight: 700;
+
+    color: #ffffff;
+    background-color: #171717;
+
+    border: 1px solid #171717;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition:
+        transform 180ms ease,
+        background-color 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.download-main-button:hover {
+    background-color: #333333;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
+}
+
+.download-main-button:focus-visible {
+    outline: 3px solid rgba(162, 84, 145, 0.4);
+    outline-offset: 3px;
+}
+
+
+/* Flecha */
+
+.download-arrow {
+    display: inline-block;
+
+    font-size: 1rem;
+
+    transition: transform 200ms ease;
+}
+
+.download-selector[open] .download-arrow {
+    transform: rotate(180deg);
+}
+
+
+/* Lista de formatos */
+
+.download-options {
+    margin-top: 10px;
+
+    overflow: hidden;
+
+    background-color: #ffffff;
+
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Enlaces de descarga */
+
+.download-option {
+    min-height: 64px;
+
+    display: grid;
+    grid-template-columns: 50px 1fr 28px;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px 14px;
+
+    text-align: left;
+    text-decoration: none;
+
+    color: var(--primary-text);
+
+    border-bottom: 1px solid var(--border-color);
+
+    transition:
+        background-color 180ms ease,
+        padding-left 180ms ease;
+}
+
+.download-option:last-child {
+    border-bottom: none;
+}
+
+.download-option:hover {
+    padding-left: 18px;
+
+    background-color: #f3f3f3;
+}
+
+.download-option:focus-visible {
+    outline: 3px solid rgba(162, 84, 145, 0.35);
+    outline-offset: -3px;
+}
+
+.download-format {
+    font-size: 0.78rem;
+    font-weight: 800;
+
+    letter-spacing: 0.05rem;
+
+    color: #171717;
+}
+
+.download-format-description {
+    font-size: 0.75rem;
+    line-height: 1.35;
+
+    color: var(--secondary-text);
+}
+
+.download-icon {
+    display: grid;
+    place-items: center;
+
+    width: 28px;
+    height: 28px;
+
+    font-size: 0.9rem;
+    font-weight: 700;
+
+    color: #ffffff;
+    background-color: #171717;
+
+    border-radius: 50%;
+}
+
+
+/* Adaptación para celulares */
+
+@media (max-width: 480px) {
+
+    .download-section {
+        padding-inline: 16px;
+    }
+
+    .download-option {
+        grid-template-columns: 44px 1fr 28px;
+
+        padding-inline: 12px;
+    }
+
+    .download-format-description {
+        font-size: 0.7rem;
+    }
+}
+
+/* ========================================
+   SECCIÓN DE LANZAMIENTOS
+======================================== */
+
+.releases-page {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+
+    padding: 32px 16px 48px;
+}
+
+.releases-card {
+    width: 100%;
+    max-width: 900px;
+
+    overflow: hidden;
+
+    background-color: var(--card-background);
+
+    border-radius: var(--border-radius);
+
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.35),
+        0 4px 14px rgba(0, 0, 0, 0.16);
+}
+
+
+/* ========================================
+   ENCABEZADO
+======================================== */
+
+.releases-header {
+    padding: 30px 24px 24px;
+
+    text-align: center;
+
+    border-bottom: 1px solid var(--border-color);
+}
+
+.releases-label {
+    margin-bottom: 8px;
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    letter-spacing: 0.16rem;
+    text-transform: uppercase;
+
+    color: #a25491;
+}
+
+.releases-title {
+    margin-bottom: 8px;
+
+    font-size: clamp(1.4rem, 5vw, 2rem);
+    line-height: 1.2;
+
+    color: var(--primary-text);
+}
+
+.releases-description {
+    font-size: 0.86rem;
+    line-height: 1.5;
+
+    color: var(--secondary-text);
+}
+
+
+/* ========================================
+   CUADRÍCULA
+======================================== */
+
+.releases-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(170px, 1fr)
+        );
+
+    gap: 22px;
+
+    padding: 26px;
+}
+
+
+/* ========================================
+   TARJETA INDIVIDUAL
+======================================== */
+
+.release-item {
+    min-width: 0;
+
+    overflow: hidden;
+
+    background-color: #ffffff;
+
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+
+    transition:
+        transform 220ms ease,
+        box-shadow 220ms ease;
+}
+
+/*
+    Es solo una animación visual.
+    La tarjeta no es un enlace y no realiza ninguna acción.
+*/
+.release-item:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ========================================
+   PORTADA CUADRADA
+======================================== */
+
+.release-cover-container {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
+    overflow: hidden;
+
+    background-color: #eeeeee;
+}
+
+.release-cover {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform 500ms ease,
+        filter 500ms ease;
+}
+
+.release-item:hover .release-cover {
+    transform: scale(1.035);
+
+    filter: brightness(1.04);
+}
+
+
+/* ========================================
+   ETIQUETA DE ÚLTIMO LANZAMIENTO
+======================================== */
+
+.release-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+
+    padding: 7px 10px;
+
+    font-size: 0.62rem;
+    font-weight: 700;
+
+    letter-spacing: 0.04rem;
+    text-transform: uppercase;
+
+    color: #ffffff;
+    background-color: rgba(23, 23, 23, 0.86);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+
+    backdrop-filter: blur(5px);
+}
+
+
+/* ========================================
+   INFORMACIÓN DEL DISCO
+======================================== */
+
+.release-item-information {
+    padding: 15px 14px 17px;
+
+    text-align: left;
+}
+
+.release-item-title {
+    margin-bottom: 5px;
+
+    overflow: hidden;
+
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.3;
+
+    color: var(--primary-text);
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.release-item-type {
+    font-size: 0.72rem;
+    line-height: 1.4;
+
+    color: var(--secondary-text);
+}
+
+
+/* ========================================
+   DISEÑO PARA TABLET
+======================================== */
+
+@media (max-width: 700px) {
+
+    .releases-grid {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+        gap: 16px;
+
+        padding: 20px;
+    }
+}
+
+
+/* ========================================
+   DISEÑO PARA CELULAR
+======================================== */
+
+@media (max-width: 480px) {
+
+    .releases-page {
+        padding: 18px 10px 36px;
+    }
+
+    .releases-card {
+        border-radius: 14px;
+    }
+
+    .releases-header {
+        padding: 24px 18px 20px;
+    }
+
+    .releases-grid {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+        gap: 12px;
+
+        padding: 14px;
+    }
+
+    .release-item {
+        border-radius: 9px;
+    }
+
+    .release-item-information {
+        padding: 11px 10px 13px;
+    }
+
+    .release-item-title {
+        font-size: 0.78rem;
+    }
+
+    .release-item-type {
+        font-size: 0.64rem;
+    }
+
+    .release-badge {
+        top: 8px;
+        left: 8px;
+
+        padding: 5px 7px;
+
+        font-size: 0.52rem;
+    }
+}
+
+
+/* Una columna en pantallas muy pequeñas */
+
+@media (max-width: 310px) {
+
+    .releases-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========================================
+   SECCIÓN DE VIDEOS
+======================================== */
+
+.videos-page {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+
+    padding: 32px 16px 56px;
+}
+
+.videos-card {
+    width: 100%;
+    max-width: 900px;
+
+    overflow: hidden;
+
+    background-color: var(--card-background);
+
+    border-radius: var(--border-radius);
+
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.35),
+        0 4px 14px rgba(0, 0, 0, 0.16);
+}
+
+
+/* ========================================
+   ENCABEZADO DE VIDEOS
+======================================== */
+
+.videos-header {
+    padding: 30px 24px 24px;
+
+    text-align: center;
+
+    border-bottom: 1px solid var(--border-color);
+}
+
+.videos-label {
+    margin-bottom: 8px;
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    letter-spacing: 0.16rem;
+    text-transform: uppercase;
+
+    color: #a25491;
+}
+
+.videos-title {
+    margin-bottom: 8px;
+
+    font-size: clamp(1.4rem, 5vw, 2rem);
+    line-height: 1.2;
+
+    color: var(--primary-text);
+}
+
+.videos-description {
+    font-size: 0.86rem;
+    line-height: 1.5;
+
+    color: var(--secondary-text);
+}
+
+
+/* ========================================
+   LISTA DE VIDEOS
+======================================== */
+
+.videos-list {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    gap: 26px;
+
+    padding: 26px;
+}
+
+
+/* ========================================
+   TARJETA DE VIDEO
+======================================== */
+
+.video-item {
+    width: 100%;
+
+    overflow: hidden;
+
+    background-color: #ffffff;
+
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 220ms ease,
+        box-shadow 220ms ease;
+}
+
+.video-item:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.13);
+}
+
+
+/* ========================================
+   CONTENEDOR RECTANGULAR 16:9
+======================================== */
+
+.video-media-container {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+
+    background-color: #090909;
+}
+
+.video-player {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    background-color: #090909;
+}
+
+
+/* ========================================
+   ETIQUETA SOBRE EL VIDEO
+======================================== */
+
+.video-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+
+    padding: 7px 11px;
+
+    pointer-events: none;
+
+    font-size: 0.62rem;
+    font-weight: 700;
+
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+
+    color: #ffffff;
+    background-color: rgba(23, 23, 23, 0.82);
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 20px;
+
+    backdrop-filter: blur(6px);
+}
+
+
+/* ========================================
+   INFORMACIÓN DEL VIDEO
+======================================== */
+
+.video-information {
+    padding: 20px 22px 23px;
+
+    text-align: left;
+}
+
+.video-category {
+    margin-bottom: 7px;
+
+    font-size: 0.64rem;
+    font-weight: 700;
+
+    letter-spacing: 0.12rem;
+    text-transform: uppercase;
+
+    color: #a25491;
+}
+
+.video-item-title {
+    margin-bottom: 6px;
+
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    line-height: 1.3;
+
+    color: var(--primary-text);
+}
+
+.video-item-meta {
+    margin-bottom: 11px;
+
+    font-size: 0.74rem;
+    font-weight: 600;
+
+    color: var(--secondary-text);
+}
+
+.video-item-description {
+    max-width: 680px;
+
+    font-size: 0.82rem;
+    line-height: 1.6;
+
+    color: var(--secondary-text);
+}
+
+
+/* ========================================
+   DISEÑO PARA TABLET
+======================================== */
+
+@media (max-width: 700px) {
+
+    .videos-list {
+        gap: 20px;
+
+        padding: 20px;
+    }
+
+    .video-information {
+        padding: 18px;
+    }
+}
+
+
+/* ========================================
+   DISEÑO PARA CELULAR
+======================================== */
+
+@media (max-width: 480px) {
+
+    .videos-page {
+        padding: 18px 10px 40px;
+    }
+
+    .videos-card {
+        border-radius: 14px;
+    }
+
+    .videos-header {
+        padding: 24px 18px 20px;
+    }
+
+    .videos-list {
+        gap: 16px;
+
+        padding: 14px;
+    }
+
+    .video-item {
+        border-radius: 10px;
+    }
+
+    .video-information {
+        padding: 15px 14px 18px;
+    }
+
+    .video-item-title {
+        font-size: 1rem;
+    }
+
+    .video-item-description {
+        font-size: 0.76rem;
+    }
+
+    .video-badge {
+        top: 9px;
+        left: 9px;
+
+        padding: 5px 8px;
+
+        font-size: 0.52rem;
+    }
+}
+/* ========================================
+   TARJETAS SELECCIONABLES
+======================================== */
+
+.release-item-link {
+    display: block;
+
+    height: 100%;
+
+    color: inherit;
+    text-decoration: none;
+
+    border-radius: inherit;
+}
+
+.release-item-link:focus-visible {
+    outline: 4px solid rgba(162, 84, 145, 0.4);
+    outline-offset: 4px;
+}
+
+
+/* ========================================
+   DETALLE DEL LANZAMIENTO
+======================================== */
+
+.release-detail-page {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+
+    padding: 32px 16px 56px;
+
+    scroll-margin-top: 24px;
+}
+
+.release-detail-page[hidden] {
+    display: none;
+}
+
+.release-detail-card {
+    width: 100%;
+    max-width: 900px;
+
+    overflow: hidden;
+
+    background-color: var(--card-background);
+
+    border-radius: var(--border-radius);
+
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.35),
+        0 4px 14px rgba(0, 0, 0, 0.16);
+
+    animation: release-detail-entrance 450ms ease-out;
+}
+
+
+/* ========================================
+   ENCABEZADO
+======================================== */
+
+.release-detail-header {
+    position: relative;
+
+    padding: 30px 24px 26px;
+
+    text-align: center;
+
+    border-bottom: 1px solid var(--border-color);
+}
+
+.release-detail-back {
+    position: absolute;
+    top: 22px;
+    left: 22px;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 9px 12px;
+
+    font: inherit;
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    color: #555555;
+    background-color: #f5f5f5;
+
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition:
+        color 180ms ease,
+        background-color 180ms ease,
+        transform 180ms ease;
+}
+
+.release-detail-back:hover {
+    color: #ffffff;
+    background-color: #171717;
+
+    transform: translateX(-2px);
+}
+
+.release-detail-back:focus-visible {
+    outline: 3px solid rgba(162, 84, 145, 0.4);
+    outline-offset: 3px;
+}
+
+.release-detail-label,
+.release-detail-section-label {
+    margin-bottom: 8px;
+
+    font-size: 0.68rem;
+    font-weight: 700;
+
+    letter-spacing: 0.15rem;
+    text-transform: uppercase;
+
+    color: #a25491;
+}
+
+.release-detail-title {
+    margin-bottom: 6px;
+
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    line-height: 1.15;
+
+    color: var(--primary-text);
+}
+
+.release-detail-artist {
+    font-size: 0.86rem;
+    font-weight: 600;
+
+    color: var(--secondary-text);
+}
+
+
+/* ========================================
+   CUADRÍCULA PRINCIPAL
+======================================== */
+
+.release-detail-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(210px, 0.85fr)
+        minmax(0, 2.15fr);
+
+    grid-template-areas:
+        "cover tracklist"
+        "description platforms"
+        "players players";
+
+    gap: 18px;
+
+    padding: 26px;
+}
+
+
+/* ========================================
+   PANELES
+======================================== */
+
+.release-detail-panel,
+.release-detail-cover-panel {
+    min-width: 0;
+
+    overflow: hidden;
+
+    background-color: #ffffff;
+
+    border: 1px solid var(--border-color);
+    border-radius: 13px;
+
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.07);
+}
+
+.release-detail-panel {
+    padding: 22px;
+}
+
+.release-detail-panel h3 {
+    margin-bottom: 16px;
+
+    font-size: 1.08rem;
+    line-height: 1.3;
+
+    color: var(--primary-text);
+}
+
+
+/* ========================================
+   PORTADA
+======================================== */
+
+.release-detail-cover-panel {
+    grid-area: cover;
+
+    aspect-ratio: 1 / 1;
+
+    background-color: #eeeeee;
+}
+
+.release-detail-cover {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* ========================================
+   TRACKLIST
+======================================== */
+
+.release-detail-tracklist {
+    grid-area: tracklist;
+}
+
+.track-list {
+    list-style: none;
+
+    margin: 0;
+    padding: 0;
+
+    border-top: 1px solid var(--border-color);
+}
+
+.track-item {
+    display: grid;
+
+    grid-template-columns:
+        34px
+        minmax(0, 1fr)
+        auto;
+
+    align-items: center;
+
+    gap: 12px;
+
+    min-height: 62px;
+
+    padding: 10px 4px;
+
+    border-bottom: 1px solid var(--border-color);
+}
+
+.track-number {
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    color: #a25491;
+}
+
+.track-information {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+.track-information strong {
+    overflow: hidden;
+
+    font-size: 0.86rem;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.track-information small,
+.track-duration {
+    font-size: 0.7rem;
+
+    color: var(--secondary-text);
+}
+
+
+/* ========================================
+   DESCRIPCIÓN
+======================================== */
+
+.release-detail-description {
+    grid-area: description;
+}
+
+.release-detail-description > p:not(.release-detail-section-label) {
+    margin-bottom: 18px;
+
+    font-size: 0.8rem;
+    line-height: 1.65;
+
+    color: var(--secondary-text);
+}
+
+.release-credits {
+    display: grid;
+
+    gap: 10px;
+
+    margin: 0;
+}
+
+.release-credits div {
+    display: flex;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    padding-bottom: 8px;
+
+    border-bottom: 1px solid var(--border-color);
+}
+
+.release-credits dt,
+.release-credits dd {
+    margin: 0;
+
+    font-size: 0.7rem;
+}
+
+.release-credits dt {
+    color: var(--secondary-text);
+}
+
+.release-credits dd {
+    font-weight: 700;
+
+    color: var(--primary-text);
+}
+
+
+/* ========================================
+   PLATAFORMAS
+======================================== */
+
+.release-detail-platforms {
+    grid-area: platforms;
+}
+
+.release-platform-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+}
+
+.release-platform-link {
+    min-width: 0;
+    min-height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    padding: 10px 11px;
+
+    color: var(--primary-text);
+    text-decoration: none;
+
+    background-color: #fafafa;
+
+    border: 1px solid var(--border-color);
+    border-radius: 9px;
+
+    transition:
+        background-color 180ms ease,
+        transform 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.release-platform-link:hover {
+    background-color: #ffffff;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.09);
+}
+
+.release-platform-link:focus-visible {
+    outline: 3px solid rgba(162, 84, 145, 0.35);
+    outline-offset: 2px;
+}
+
+.release-platform-information {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 0.73rem;
+    font-weight: 700;
+}
+
+.release-platform-information img {
+    flex-shrink: 0;
+
+    width: 24px;
+    height: 24px;
+
+    object-fit: contain;
+}
+
+.release-platform-button {
+    flex-shrink: 0;
+
+    padding: 7px 8px;
+
+    font-size: 0.62rem;
+    font-weight: 700;
+
+    color: #555555;
+    background-color: #ffffff;
+
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+
+
+/* ========================================
+   REPRODUCTORES
+======================================== */
+
+.release-detail-players {
+    grid-area: players;
+}
+
+.release-player-list {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 16px;
+}
+
+.release-player {
+    display: block;
+
+    width: 100%;
+
+    border: 0;
+    border-radius: 12px;
+
+    background-color: #111111;
+}
+
+.release-player-compact {
+    min-height: 175px;
+}
+
+.release-youtube-player {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+
+    border-radius: 12px;
+
+    background-color: #111111;
+}
+
+.release-youtube-player .release-player {
+    position: absolute;
+    inset: 0;
+
+    height: 100%;
+}
+
+
+/* ========================================
+   ANIMACIÓN
+======================================== */
+
+@keyframes release-detail-entrance {
+    from {
+        opacity: 0;
+
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+/* ========================================
+   TABLET Y CELULAR
+======================================== */
+
+@media (max-width: 700px) {
+
+    .release-detail-header {
+        padding-top: 74px;
+    }
+
+    .release-detail-grid {
+        grid-template-columns: 1fr;
+
+        grid-template-areas:
+            "cover"
+            "tracklist"
+            "description"
+            "platforms"
+            "players";
+
+        padding: 20px;
+    }
+
+    .release-detail-cover-panel {
+        width: min(100%, 430px);
+
+        justify-self: center;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .release-detail-page {
+        padding: 18px 10px 40px;
+    }
+
+    .release-detail-card {
+        border-radius: 14px;
+    }
+
+    .release-detail-header {
+        padding-inline: 18px;
+    }
+
+    .release-detail-back {
+        top: 18px;
+        left: 16px;
+    }
+
+    .release-detail-grid {
+        gap: 14px;
+
+        padding: 14px;
+    }
+
+    .release-detail-panel {
+        padding: 17px 15px;
+    }
+
+    .release-platform-list {
+        grid-template-columns: 1fr;
+    }
+
+    .release-player-compact {
+        min-height: 155px;
+    }
+}
+
+/* ========================================
+   MINIATURA SELECCIONABLE
+======================================== */
+
+.video-thumbnail-link {
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    color: inherit;
+    text-decoration: none;
+}
+
+.video-thumbnail-link:focus-visible {
+    outline: 4px solid rgba(162, 84, 145, 0.5);
+    outline-offset: -4px;
+}
+
+.video-thumbnail-image {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform 500ms ease,
+        filter 500ms ease;
+}
+
+.video-thumbnail-link:hover .video-thumbnail-image {
+    transform: scale(1.035);
+
+    filter: brightness(0.72);
+}
+
+
+/* Botón central de reproducción */
+
+.video-play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    display: grid;
+    place-items: center;
+
+    width: 68px;
+    height: 68px;
+
+    background-color: rgba(255, 255, 255, 0.92);
+
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 50%;
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+
+    transform: translate(-50%, -50%);
+
+    transition:
+        transform 200ms ease,
+        background-color 200ms ease;
+}
+
+.video-thumbnail-link:hover .video-play-button {
+    background-color: #ffffff;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.08);
+}
+
+.video-play-triangle {
+    width: 0;
+    height: 0;
+
+    margin-left: 5px;
+
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 16px solid #171717;
+}
+
+
+/* Etiqueta sobre la miniatura */
+
+.video-thumbnail-label {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+
+    padding: 7px 11px;
+
+    font-size: 0.62rem;
+    font-weight: 700;
+
+    letter-spacing: 0.06rem;
+    text-transform: uppercase;
+
+    color: #ffffff;
+    background-color: rgba(23, 23, 23, 0.82);
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 20px;
+
+    backdrop-filter: blur(6px);
+}
+
+/* ========================================
+   DETALLE DEL VIDEO
+======================================== */
+
+.video-detail-page {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+
+    padding: 32px 16px 56px;
+
+    scroll-margin-top: 24px;
+}
+
+.video-detail-page[hidden],
+.videos-page[hidden] {
+    display: none;
+}
+
+.video-detail-card {
+    width: 100%;
+    max-width: 900px;
+
+    overflow: hidden;
+
+    background-color: var(--card-background);
+
+    border-radius: var(--border-radius);
+
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.35),
+        0 4px 14px rgba(0, 0, 0, 0.16);
+
+    animation: video-detail-entrance 450ms ease-out;
+}
+
+
+/* ========================================
+   ENCABEZADO
+======================================== */
+
+.video-detail-header {
+    position: relative;
+
+    padding: 30px 24px 26px;
+
+    text-align: center;
+
+    border-bottom: 1px solid var(--border-color);
+}
+
+.video-detail-back {
+    position: absolute;
+    top: 22px;
+    left: 22px;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 9px 12px;
+
+    font: inherit;
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    color: #555555;
+    background-color: #f5f5f5;
+
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition:
+        color 180ms ease,
+        background-color 180ms ease,
+        transform 180ms ease;
+}
+
+.video-detail-back:hover {
+    color: #ffffff;
+    background-color: #171717;
+
+    transform: translateX(-2px);
+}
+
+.video-detail-back:focus-visible {
+    outline: 3px solid rgba(162, 84, 145, 0.4);
+    outline-offset: 3px;
+}
+
+.video-detail-label,
+.video-detail-section-label {
+    margin-bottom: 8px;
+
+    font-size: 0.68rem;
+    font-weight: 700;
+
+    letter-spacing: 0.15rem;
+    text-transform: uppercase;
+
+    color: #a25491;
+}
+
+.video-detail-title {
+    margin-bottom: 6px;
+
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    line-height: 1.15;
+
+    color: var(--primary-text);
+}
+
+.video-detail-artist {
+    font-size: 0.86rem;
+    font-weight: 600;
+
+    color: var(--secondary-text);
+}
+
+
+/* ========================================
+   DISTRIBUCIÓN PRINCIPAL
+======================================== */
+
+.video-detail-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(190px, 0.8fr)
+        minmax(0, 2.2fr);
+
+    grid-template-areas:
+        "cover player"
+        "description player"
+        "credits credits";
+
+    align-items: stretch;
+
+    gap: 18px;
+
+    padding: 26px;
+}
+
+
+/* ========================================
+   PANELES
+======================================== */
+
+.video-detail-panel,
+.video-detail-cover-panel {
+    min-width: 0;
+
+    overflow: hidden;
+
+    background-color: #ffffff;
+
+    border: 1px solid var(--border-color);
+    border-radius: 13px;
+
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.07);
+}
+
+.video-detail-panel {
+    padding: 22px;
+}
+
+.video-detail-panel h3 {
+    margin-bottom: 16px;
+
+    font-size: 1.08rem;
+    line-height: 1.3;
+
+    color: var(--primary-text);
+}
+
+
+/* Portada */
+
+.video-detail-cover-panel {
+    grid-area: cover;
+
+    aspect-ratio: 1 / 1;
+
+    background-color: #eeeeee;
+}
+
+.video-detail-cover {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* Descripción */
+
+.video-detail-description {
+    grid-area: description;
+}
+
+.video-detail-description p:not(.video-detail-section-label) {
+    margin-bottom: 12px;
+
+    font-size: 0.8rem;
+    line-height: 1.65;
+
+    color: var(--secondary-text);
+}
+
+.video-detail-description p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Reproductor */
+
+.video-detail-player-panel {
+    grid-area: player;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.video-detail-player-container {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+
+    background-color: #111111;
+
+    border-radius: 12px;
+}
+
+.video-detail-player {
+    position: absolute;
+    inset: 0;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    border: 0;
+}
+
+.video-youtube-link {
+    align-self: flex-start;
+
+    margin-top: 14px;
+    padding: 9px 12px;
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    color: #555555;
+    text-decoration: none;
+
+    background-color: #f7f7f7;
+
+    border: 1px solid var(--border-color);
+    border-radius: 7px;
+
+    transition:
+        color 180ms ease,
+        background-color 180ms ease,
+        transform 180ms ease;
+}
+
+.video-youtube-link:hover {
+    color: #ffffff;
+    background-color: #171717;
+
+    transform: translateY(-1px);
+}
+
+
+/* Créditos */
+
+.video-detail-credits {
+    grid-area: credits;
+}
+
+.video-credits-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin: 0;
+}
+
+.video-credit {
+    min-width: 0;
+
+    padding: 13px 14px;
+
+    background-color: #fafafa;
+
+    border: 1px solid var(--border-color);
+    border-radius: 9px;
+}
+
+.video-credit dt {
+    margin-bottom: 5px;
+
+    font-size: 0.64rem;
+    font-weight: 700;
+
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+
+    color: #a25491;
+}
+
+.video-credit dd {
+    margin: 0;
+
+    overflow-wrap: anywhere;
+
+    font-size: 0.76rem;
+    font-weight: 600;
+
+    color: var(--primary-text);
+}
+
+
+/* Animación */
+
+@keyframes video-detail-entrance {
+    from {
+        opacity: 0;
+
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   DETALLE DEL VIDEO: TABLET Y MÓVIL
+   Colocar al final de style.css
+======================================== */
+
+@media (max-width: 700px) {
+
+    .video-detail-page {
+        width: 100%;
+
+        padding: 18px 10px 40px;
+    }
+
+    .video-detail-card {
+        width: 100%;
+        max-width: 100%;
+
+        border-radius: 14px;
+    }
+
+
+    /* Encabezado sin elementos superpuestos */
+
+    .video-detail-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding: 18px 18px 24px;
+
+        text-align: center;
+    }
+
+    .video-detail-back {
+        position: static;
+
+        align-self: flex-start;
+
+        margin-bottom: 18px;
+    }
+
+    .video-detail-label {
+        margin-bottom: 7px;
+    }
+
+    .video-detail-title {
+        margin-bottom: 6px;
+    }
+
+
+    /* Una sola columna */
+
+    .video-detail-grid {
+        display: grid;
+
+        grid-template-columns: minmax(0, 1fr);
+
+        grid-template-areas:
+            "cover"
+            "description"
+            "player"
+            "credits";
+
+        gap: 16px;
+
+        width: 100%;
+
+        padding: 14px;
+    }
+
+
+    /* Todos los elementos ocupan el ancho disponible */
+
+    .video-detail-cover-panel,
+    .video-detail-description,
+    .video-detail-player-panel,
+    .video-detail-credits {
+        width: 100%;
+        min-width: 0;
+    }
+
+
+    /* Portada cuadrada y centrada */
+
+    .video-detail-cover-panel {
+        grid-area: cover;
+
+        width: min(100%, 320px);
+
+        justify-self: center;
+
+        aspect-ratio: 1 / 1;
+    }
+
+    .video-detail-cover {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+    }
+
+
+    /* Descripción */
+
+    .video-detail-description {
+        grid-area: description;
+    }
+
+
+    /* Reproductor completo */
+
+    .video-detail-player-panel {
+        grid-area: player;
+
+        display: block;
+    }
+
+    .video-detail-player-container {
+        position: relative;
+
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+
+        overflow: hidden;
+
+        border-radius: 12px;
+    }
+
+    .video-detail-player {
+        position: absolute;
+        inset: 0;
+
+        display: block;
+
+        width: 100%;
+        height: 100%;
+
+        border: 0;
+    }
+
+
+    /* Créditos */
+
+    .video-detail-credits {
+        grid-area: credits;
+    }
+
+    .video-credits-list {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 10px;
+    }
+
+    .video-credit {
+        min-width: 0;
+    }
+
+    .video-credit dd {
+        overflow-wrap: anywhere;
+
+        line-height: 1.3;
+    }
+}
+
+
+/* ========================================
+   TELÉFONOS PEQUEÑOS
+======================================== */
+
+@media (max-width: 480px) {
+
+    .video-detail-page {
+        padding-inline: 7px;
+    }
+
+    .video-detail-card {
+        border-radius: 13px;
+    }
+
+    .video-detail-header {
+        padding: 16px 14px 22px;
+    }
+
+    .video-detail-back {
+        min-height: 40px;
+
+        margin-bottom: 16px;
+        padding: 9px 12px;
+    }
+
+    .video-detail-label {
+        font-size: 0.61rem;
+        letter-spacing: 0.12rem;
+    }
+
+    .video-detail-title {
+        font-size: 1.75rem;
+    }
+
+    .video-detail-artist {
+        font-size: 0.82rem;
+    }
+
+    .video-detail-grid {
+        gap: 13px;
+
+        padding: 12px;
+    }
+
+    .video-detail-cover-panel {
+        width: min(100%, 290px);
+    }
+
+    .video-detail-panel {
+        padding: 18px 16px;
+    }
+
+    .video-detail-panel h3 {
+        margin-bottom: 14px;
+    }
+
+    .video-detail-description p:not(
+        .video-detail-section-label
+    ) {
+        font-size: 0.82rem;
+        line-height: 1.65;
+    }
+
+
+    /* Un crédito por fila para evitar palabras partidas */
+
+    .video-credits-list {
+        grid-template-columns: 1fr;
+
+        gap: 9px;
+    }
+
+    .video-credit {
+        padding: 12px 13px;
+    }
+
+    .video-credit dt {
+        margin-bottom: 5px;
+    }
+
+    .video-credit dd {
+        font-size: 0.78rem;
+
+        overflow-wrap: break-word;
+        word-break: normal;
+    }
+
+
+    /* Botón de YouTube a todo lo ancho */
+
+    .video-youtube-link {
+        display: block;
+
+        width: 100%;
+
+        margin-top: 12px;
+
+        text-align: center;
+    }
+}
