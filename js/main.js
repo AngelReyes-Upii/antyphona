@@ -99,7 +99,7 @@ document.addEventListener("click", async (evento) => {
                     <h2>No pudimos abrir el lanzamiento</h2>
 
                     <p>
-                        Revisa que el archivo del lanzamiento exista.
+                        ):
                     </p>
                 </div>
             `;
@@ -211,8 +211,7 @@ document.addEventListener("click", async (evento) => {
                     <h2>No pudimos abrir el video</h2>
 
                     <p>
-                        Revisa que el archivo del detalle exista
-                        y que Live Server esté activo.
+                        ):
                     </p>
                 </div>
             `;
