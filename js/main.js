@@ -251,3 +251,86 @@ document.addEventListener("click", async (evento) => {
         });
     }
 });
+
+/* Eventos*/
+document.addEventListener("click", async (evento) => {
+    const enlaceEvento = evento.target.closest("[data-event]");
+
+    if (enlaceEvento) {
+        evento.preventDefault();
+
+        const detalle = document.querySelector("#detalle-evento");
+        const ruta = enlaceEvento.dataset.event;
+
+        if (!detalle || !ruta) {
+            return;
+        }
+
+        detalle.hidden = false;
+        detalle.setAttribute("aria-busy", "true");
+
+        detalle.innerHTML = `
+            <p class="component-status">
+                Cargando información del evento...
+            </p>
+        `;
+
+        try {
+            await insertarComponente(detalle, ruta);
+
+            history.replaceState(
+                null,
+                "",
+                "#detalle-evento"
+            );
+
+            requestAnimationFrame(() => {
+                detalle.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            });
+        } catch (error) {
+            console.error(error);
+
+            detalle.innerHTML = `
+                <div class="component-error" role="alert">
+                    <h2>No pudimos abrir el evento</h2>
+
+                    <p>
+                        ):
+                    </p>
+                </div>
+            `;
+        } finally {
+            detalle.removeAttribute("aria-busy");
+        }
+
+        return;
+    }
+
+    const botonCerrar = evento.target.closest("[data-close-event]");
+
+    if (botonCerrar) {
+        const detalle = document.querySelector("#detalle-evento");
+        const eventos = document.querySelector("#eventos");
+
+        if (!detalle) {
+            return;
+        }
+
+        detalle.hidden = true;
+        detalle.innerHTML = "";
+
+        history.replaceState(
+            null,
+            "",
+            "#eventos"
+        );
+
+        eventos?.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+});
